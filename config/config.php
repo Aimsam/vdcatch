@@ -6,8 +6,8 @@ $cfg_dbname='vd';
 
 
 function __autoload($className) {
-	$classPath = "../library/".$className.'.class.php';
-	$classPath2 = "../model/".$className.'.class.php';
+	$classPath = dirname(__file__)."/../library/".$className.'.class.php';
+	$classPath2 = dirname(__file__)."/../model/".$className.'.class.php';
 	if (file_exists($classPath)) {
 		require_once ($classPath);
 	} elseif (file_exists($classPath2)) {
