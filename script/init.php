@@ -1,0 +1,12 @@
+<?php 
+require_once '../config/config.php';
+
+
+//初始化存储所有数据
+$util = Util::getInstance();
+$util->saveAllVideos();
+
+
+
+
+?>
