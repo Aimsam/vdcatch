@@ -1,5 +1,5 @@
 <?php 
-require_once '../config/config.php';
+require_once dirname(__file__).'../config/config.php';
 
 
 //初始化存储所有数据

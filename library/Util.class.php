@@ -54,10 +54,12 @@ class Util {
 		$rs = $db->query('select * from author where type = 1');
 		$authorList = array();
 		foreach ($rs as $row) {
-			$authorList[] = $row['id'];
+			$author['id'] = $row['id'];
+			$author['node_id'] = $row['node_id'];
+			$authorList[] = $author;
 		}
 		foreach ($authorList as $row) {
-			$this->updateVideosById($row);
+			$this->updateVideosById($row['id'], $row['node_id']);
 		}
 	}
 
