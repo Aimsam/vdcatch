@@ -23,6 +23,30 @@ class Util {
 			$this->saveAllVideosById($row['id'], $row['node_id']);
 		}
 	}
+
+    //根据ids
+	public function saveVideosByIds($ids) {
+	    $arr = explode(",", $ids);
+	    $str = "";
+	    foreach ($arr as $row) {
+	        $str .= '"'.$row .'",';
+	    }
+	    $db = new Db;
+        $sql = 'select * from author where type = 1 and id in ('.$str.'"ddd")';
+        $rs = $db->query($sql);
+        $authorList = array();
+        foreach ($rs as $row) {
+            $author['id'] = $row['id'];
+            $author['node_id'] = $row['node_id'];
+            $authorList[] = $author;
+        }
+        var_dump($authorList);
+        foreach ($authorList as $row) {
+            $this->saveAllVideosById($row['id'], $row['node_id']);
+        }
+	}
+
+
 	
 	/**
 	 * 
