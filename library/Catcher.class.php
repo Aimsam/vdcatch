@@ -3,6 +3,7 @@ class Catcher {
 	const CLIENT_ID = "74f3668e4f16ef9f";
 	const URL_VIDEOS_BY_USER = "https://openapi.youku.com/v2/videos/by_user.json";
 	const URL_VIDEOS_BASIC_BATCH = "https://openapi.youku.com/v2/videos/show_basic_batch.json";
+	const URL_THUMB_NAIL = "http://api.youku.com/player/getPlayList/VideoIDS/";
 	const PAGE = 1;
 	const COUNT = 20;
 	private static $instance = null;
@@ -14,7 +15,19 @@ class Catcher {
 		}
 		return self::$instance;
 	}
-	
+
+	public function getThumbnail2($id) {
+	    $url = self::URL_THUMB_NAIL.$id;
+	    $json = file_get_contents($url);
+	    $reg = '$"logo":"(.*?)","seed"$';
+        preg_match_all($reg, $json, $matches);
+        if(!is_null($matches[1][0])) {
+            return str_replace("\\", "", $matches[1][0]);
+        }
+	}
+
+
+
 	public function getUserLastPage($page = self::PAGE, $count = self::COUNT) {
 		$url = self::URL_VIDEOS_BY_USER."?client_id=".self::CLIENT_ID.
 		"&page=".$page."&count=".$count."&user_id=".$this->author_id;

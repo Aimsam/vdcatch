@@ -37,14 +37,23 @@ echo $stmt->execute() != 1?"sql error\n\r":"user = ".$video['author_id']."----vi
 echo "already saved!\n\r";
 		}
 	}	
-	
+
+	public function updateVideo($video) {
+	    //update video set thumbnail_2 = "2" where id = 'XNTYwNzA1NDY0'
+	    //$rs = $this->db->query("update video set thumbnail_2 = ".$video['thumbnail_2']." where id = '".$video['id']."'");
+        //echo $rs;
+	}
+
 	public function saveVideoList($videoList) {
 
 		for($i = 0; $i < count ($videoList); ++ $i) {
 			$this->saveVideo ($videoList[$i]);
 		}
 	}
-	
+
+
+
+
 }
 
 

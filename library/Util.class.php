@@ -8,7 +8,25 @@ class Util {
 		}
 		return self::$instance;
 	}
-	
+
+	public function thumbnail() {
+	    $catcher = Catcher::getInstance();
+	    //$catcher->getThumbnail2("XNTU4NDE3ODky");
+	    $db = new Db;
+        $rs = $db->query('select * from video where thumbnail_2 = ""');
+        $authorList = array();
+        foreach ($rs as $row) {
+            $id = $row['id'];
+            $thumbnail = $catcher->getThumbnail2($id);
+echo $thumbnail."\n\r";
+            if ($thumbnail != null && $thumbnail != "") {
+                $sql = "update video set thumbnail_2 = '$thumbnail' where id = '$id'";
+                $rs = $db->query($sql);
+            }
+        }
+	}
+
+
 	//保存所有
 	public function saveAllVideos() {
 		$db = new Db;
@@ -49,7 +67,7 @@ class Util {
 
 	
 	/**
-	 * 
+	 *
 	 * @param int $author_id
 	 * @param int $node_id
 	 */
